@@ -1,0 +1,85 @@
+<html ng-app="metice">
+	<head>
+		<title>User | Signup</title>
+		<link rel="icon" type="image/png" href="img/favicon.png" />
+		<link rel="stylesheet" type="text/css" href="css/font-awesome.min.css">
+		<link href="css/bootstrap.min.css" rel="stylesheet">
+		<link href="css/animate.min.css" rel="stylesheet">
+		<link href="css/jquery-ui.min.css" rel="stylesheet">
+		<link href="css/custom.css" rel="stylesheet">
+		<script src="js/angular.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0-beta.2/angular-route.min.js"></script>
+		<script src="apps/app.js"></script>
+		<script src="apps/controller/signupcontroller.js"></script>
+		<script src="js/textAngular-rangy.min.js"></script>
+		<script src="js/textAngular-sanitize.min.js"></script>
+		<script src="js/textAngular.min.js"></script>
+		<script src="js/jquery-1.11.3.min.js"></script>
+		<script src="js/bootstrap.min.js"></script>
+		<script src="js/jquery-ui.min.js"></script>
+		<script src="js/wow.min.js"></script>
+		<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/css/bootstrap-datepicker.css" rel="stylesheet">
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment-with-locales.js" type="text/javascript"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/js/bootstrap-datepicker.min.js" type="text/javascript"></script>
+		<script src="js/script.js"></script>
+		<script>
+		 $(function(){
+			 $('[data-toggle="tooltip"]').tooltip(); 
+		  });
+		 </script>
+	</head>
+	<body class="signupbackground" ng-controller="signupcontroller">
+		<div class="container col-lg-offset-3 col-lg-5 signup-form wow bounce">
+			<h2 align="center">Sign Up</h2>
+			<hr />
+			Hi <strong>{{user.name}}</strong>, Your details will be added as <strong>{{user.email}}</strong>. If it is not you please logout or don't proceed<br/>
+			<form method="post">
+				<!-- <div class="form-group wow fadeIn" data-wow-duration=3s>
+					<label for="password" class="control-label">Enter Password</label>
+					<input type="password" name="password" id="password" class="form-control" placeholder = "Enter Password" ng-model= "signup.user.id">
+				</div>
+				<div class="form-group wow fadeIn" data-wow-duration=3s>
+					<label for="cpassword" class="control-label">Confirm Password</label>
+					<input type="password" name="cPassword" id="cPassword" class="form-control" placeholder = "Confirm Password">
+				</div>
+						 -->		
+				<div class="form-group wow fadeIn col-lg-5 col-md-5 col-sm-5 no-padding" data-wow-duration=3s title="Date of Birth">
+					<label for="dob" class="control-label">DOB</label>
+					<input type='text' ng-model=user.dob class="form-control"placeholder="dd-mm-yyyy"data-placement="right"data-toggle="tooltip" title="Format Should be dd-mm-yyyy"/>
+				</div>
+				<div class="form-group wow fadeIn col-lg-5 col-lg-push-2 col-md-5 col-md-push-2 col-sm-5 col-sm-push-2 no-padding" data-wow-duration=3s data-toggle="tooltip">
+					<label for="dob" class="control-label" title="Date of Anniversary">DOA</label>
+					<input type='text' ng-model = user.doa placeholder="Date of Anniversary"class="form-control" data-toggle="tooltip" title="Format Should be dd-mm-yyyy"data-placement="right"/>
+				</div>
+				<div class="form-group wow fadeIn col-lg-5 col-md-5 col-sm-5 no-padding" data-wow-duration=3s>
+					<label for="company" class="control-label">Select Company</label>
+					<div class="input-group full-width">
+						<input type='text' name = "comapny" placeholder="Select Your Company"class="form-control" list='companylist' ng-model="user.company"/>
+						<datalist id="companylist">
+							<select>
+								<option ng-repeat="company in companies | orderBy : company" value={{company.name}}>{{company.name}}</option>
+							</select>
+						</datalist>
+					</div>
+				</div>
+				<div class="form-group wow fadeIn col-lg-5 col-lg-push-2 col-md-5 col-md-push-2 col-sm-5 col-sm-push-2 no-padding" data-wow-duration=3s>
+					<label for="company" class="control-label">Select Role</label>
+					<div class="input-group full-width">
+						<input type='text' name = "role" placeholder="Select Your Role" class="form-control" list='roleList' ng-model="user.role"/>
+						<datalist id="roleList">
+							<select>
+								<option ng-repeat="role in roles" value={{role.name}}>{{role.name}}</option>
+							</select>
+						</datalist>
+					</div>
+				</div>
+				
+				<div class="row wow fadeIn" data-wow-duration=3s>
+					<input type="Submit" class="btn btn-success col-lg-4 col-lg-push-1 col-md-4 col-md-push-1 col-sm-4 col-sm-push-1 col-xs-4 col-xs-push-1" Value="Sign Up" ng-click="sendForm()">
+					<input type="reset" class="btn btn-danger col-lg-4 col-lg-push-3 col-md-4 col-md-push-3 col-sm-4 col-sm-push-3 col-xs-4 col-xs-push-3"value="Reset">
+				</div>
+			</div>
+		</form>
+	</div>
+</body>
+</html>

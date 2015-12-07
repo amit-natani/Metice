@@ -1,0 +1,48 @@
+<div ng-controller="adminController">
+	<div class="alert wow bounceIn" ng-show="postAlert" ng-class="isPostSuccess ? 'alert-success' : 'alert-danger'">
+		<strong>{{postAlertCode}}!</strong> {{postAlertMessage}}.
+	</div>
+<form role="form">
+	<legend>Create Notice</legend>
+	<div class="form-group col-lg-12">
+		<label class="control-label">Notice Title</label>
+		<input type="text" class="form-control" ng-model="notice.title" required>
+	</div>
+	<!-- <div class="form-group col-lg-6">
+		<label class="control-label">Posted On</label>
+		<span class="form-control">{{date | date:'yyyy-MM-dd'}}</span>
+	</div> -->
+</div>
+	<div class="form-group col-lg-6">
+		<label class="control-label">Expires On</label>
+		<div class='input-group date' data-provide="datepicker"id='datetimepicker1'>
+    	    <input class="datepicker form-control"data-date-format="dd-mm-yyyy" ng-model="notice.expireDate" placeholder="dd-mm-yyyy" required/>
+	        <span class="input-group-addon">
+	            <span class="glyphicon glyphicon-calendar"></span>
+	        </span>
+	    </div>
+	</div>
+	<div class="form-group col-lg-6">
+		<label class="control-label">Tags</label>
+		<input type="text" class="form-control" ng-model="notice.tagList" required>
+	</div>
+	<!-- <div class="form-group col-lg-6">
+		<label class="control-label">Visible To</label>
+		<input type="text" list="roles" class="form-control" ng-model="notice.roles">
+		<datalist id="roles">
+			<select >
+				<option ng-repeat="role in roles">{{role.name}}</option>
+			</select>
+		</datalist>
+	</div> -->
+	
+	<div class="form-group col-lg-12">
+		<label class="control-label">Notice</label>
+		<div text-angular ng-model="notice.content" class="notice-content" required>
+		</div>
+	</div>
+	<div class="form-group">
+		<button class="btn btn-success col-lg-3 col-lg-offset-4" ng-click="createNotice(notice)">Create Notice <span class="glyphicon glyphicon-ok"></span></button>
+	</div>
+</form>
+</div>

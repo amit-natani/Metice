@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html ng-app="metice" ng-controller="managerController">
+<head>
+	<title>Welcome {{user.name}}</title>
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+	<link rel="icon" type="image/png" href="img/favicon.png" />
+	<link rel="stylesheet" type="text/css" href="css/font-awesome.min.css">
+	<link rel="stylesheet" type="text/css" href="css/custom.css">
+	<link rel="stylesheet" type="text/css" href="css/textAngular.css">
+	<link rel="stylesheet" href="css/animate.min.css">
+	<script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
+	<script type="text/javascript" src="js/bootstrap.js"></script>
+	<script src="js/angular.min.js"></script>
+	<script src="js/wow.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0-beta.2/angular-route.min.js"></script>
+	<script src="apps/app.js"></script>
+	<script src="apps/controller/admincontroller.js"></script>
+	<script src="apps/controller/managercontroller.js"></script>
+	<script src="apps/controller/checkpermission.js"></script>
+	<script src="js/textAngular-rangy.min.js"></script>
+	<script src="js/textAngular-sanitize.min.js"></script>
+	<script src="js/textAngular.min.js"></script>
+	<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+<meta http-equiv="Pragma" content="no-cache" />
+<meta http-equiv="Expires" content="0" />
+	<script>
+	$(function(){
+	      new WOW().init();
+	  });
+	</script>
+</head>
+<body>
+	<nav class="navbar navbar-inverse navbar-fixed-top">
+		<div class="container">
+			<a href="#" class="navbar-brand">Metice</a>
+			<ul class="nav navbar-nav">
+				<li><a href="#createNotice"><i class="fa fa-plus"></i> Create Notice</a></li>
+				<li><a href="#loadManagerNotices"><i class="fa fa-pencil-square-o"></i> Notice Management</a></li>
+			</ul>
+		<ul class="nav navbar-nav pull-right">
+			<li class="dropdown">
+				<a class="dropdown-toggle" data-toggle="dropdown"> Logout <span class="caret"></span></a>
+				<ul class="dropdown-menu">
+					<li><a data-target="#accountsettings" data-toggle="modal"><i class="fa fa-cog"></i> Account Settings</a></li>
+					<li class="divider"></li>
+					<li><a ng-click="logout()"><i class="fa fa-sign-out"></i> Logout</a></li>
+				</ul>
+			</li>
+		</ul>
+	</nav>
+	<div id="accountsettings" class="modal fade" role="dialog">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal">&times;</button>
+						<h4 class="modal-title">Account Settings</h4>
+					</div>
+					<div class="modal-body">
+						<div class="alert" ng-show="updateAlert" ng-class="isUpdateSuccess ? 'alert-success' : 'alert-danger'">
+  							<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+  							<strong>{{updateAlertCode}}!</strong> {{updateAlertMessage}}.
+						</div>
+						<form class="form" role="form">
+							<div class="form-group">
+								<label class="control-label" title="Full Name">Full Name: </label>
+								<input type="text" class="form-control" ng-model="user.name" placeholder="Enter Your Fullname" required>
+							</div>
+							<div class="form-group">
+								<label class="control-label" title="Date Of Birth">DOB</label>
+								<input type='text' name="dob" ng-model ="user.dob" placeholder="Date of Birth"class="form-control" id='datepicker1'required/>
+							</div>
+							<div class="form-group" title="Date Of Anniversary">
+								<label class="control-label">DOA</label>
+								<input type='text' name="doa" ng-model ="user.doa" placeholder="Date of Anniversary"class="form-control" id='datepicker2'required/>
+							</div>
+							<button class="btn btn-success col-lg-offset-2 col-md-offset-2  col-sm-offset-2 col-xs-offset-2"ng-click="updateuser()">Save Data <i class="glyphicon glyphicon-ok"></i></button>
+							<button type="reset" class="btn btn-warning col-lg-offset-2 col-md-offset-2 col-sm-offset-2 col-xs-offset-2">Reset Form <i class="glyphicon glyphicon-refresh"></i></button>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	<div ng-include="'sidebarinfo.html'"></div>
+	<div class="col-lg-8 center-bar">
+		<div ng-view></div>
+	</div>
+	<div class="col-lg-2 right-sidebar"></div>
+</body>
+<script>
+		var module = angular.module("noticecreate", ['textAngular']);
+</script>
+</html>

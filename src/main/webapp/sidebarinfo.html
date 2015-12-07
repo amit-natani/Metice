@@ -1,0 +1,22 @@
+<div class="col-lg-2 col-md-2 left-sidebar visible-lg visible-md wow fadeIn">
+	<div class="col-lg-12 wow bounceIn">
+		<img ng-src="{{user.picture}}" alt={{user.name}} title="{{user.name}}" class="img-responsive img-thumbnail">
+	</div>
+	<div class="container-fluid small-margin">
+		<div class="wow bounceIn">
+			<div class="detail"><strong> Name </strong><br/> {{user.name}}<br/></div>
+		</div>
+		<div class="wow bounceIn">
+			<div class="detail"><strong> Email </strong> <br/>{{user.email}}<br/></div>
+		</div>
+		<div class="wow bounceIn">
+			<div class="detail"><strong> Date of Birth </strong><br/> {{user.dob}}<br/></div>
+		</div>
+		<div class="wow bounceIn">
+			<div class="detail"><strong> Date of Anniversary </strong> <br/>{{user.doa}}<br/></div>
+		</div>
+		<div class="wow bounceIn">
+			<div class="detail"><strong> Designation </strong><br/> {{user.role.name}}</div>
+		</div>
+	</div>
+</div>
