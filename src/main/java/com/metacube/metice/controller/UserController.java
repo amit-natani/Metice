@@ -70,22 +70,6 @@ public class UserController {
 
 			// Object of HttpSession
 			HttpSession session = request.getSession(false);
-			if(session != null) {
-				User user = (User)session.getAttribute("user");
-				if(user != null) {
-					if(user.isAdmin()) {
-						response.sendRedirect("adminconsole.html");
-					}
-					else if(user.getPermissions() == 2) {
-						response.sendRedirect("manager.html");
-					}
-					else if(user.getPermissions() == 1 && user.isValid()){
-						response.sendRedirect("user.html");
-					} else {
-						response.sendRedirect("wait.html");
-					}
-				}
-			}
 
 			// code will hold the data returned from google OAuth
 			String code = request.getParameter("code");
@@ -166,7 +150,8 @@ public class UserController {
 				session = request.getSession();
 				// setting user object as session attribute
 				session.setAttribute("user", user);
-
+				System.out.println(((User)session.getAttribute("user")).getName());
+				
 				/* If user is not valid, then redirect himj to wait.html,
 				 * otherwise if he is admin, then send him to adminconsole.html,
 				 * else if he is manager, redirect him to manager.html
@@ -216,8 +201,7 @@ public class UserController {
 		} else {
 			// creating JSON object from the given String data
 			JSONObject jsonObj = new JSONObject(userData);
-			System.out.println();
-			SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
+			SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
 			Date dateOfBirth = null, dateOfAnniversary = null;
 
 			// getting data from JSON obj
@@ -258,7 +242,8 @@ public class UserController {
 					return new ResponseEntity<Void>(
 							HttpStatus.SERVICE_UNAVAILABLE);
 				} else {
-					session.setAttribute("googleUser", null);
+					session.removeAttribute("googleUser");
+					session.setAttribute("user", user);
 					return new ResponseEntity<Void>(HttpStatus.CREATED);
 				}
 			} else {
@@ -275,7 +260,8 @@ public class UserController {
 					return new ResponseEntity<Void>(
 							HttpStatus.SERVICE_UNAVAILABLE);
 				} else {
-					session.setAttribute("googleUser", null);
+					session.removeAttribute("googleUser");
+					session.setAttribute("user", user);
 					return new ResponseEntity<Void>(
 							HttpStatus.NO_CONTENT);
 				}
@@ -526,8 +512,8 @@ public class UserController {
 	public ResponseEntity<Void> logoutUser(HttpServletRequest request) {
 		HttpSession session = request.getSession(false);
 		if(session != null) {
-			session.setAttribute("user", null);
-			session.setAttribute("googleUser", null);
+			session.removeAttribute("user");
+			session.removeAttribute("googleUser");
 			session.invalidate();
 		}
 		return new ResponseEntity<Void>(HttpStatus.OK);

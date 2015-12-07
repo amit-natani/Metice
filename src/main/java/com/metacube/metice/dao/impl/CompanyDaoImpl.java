@@ -38,7 +38,7 @@ public class CompanyDaoImpl extends AbstractDao<Integer, Company> implements
 	 * @return List of companies
 	 */
 	public void createCompany(Company company) {
-		saveOrUpdate(company);
+		save(company);
 	}
 
 	/**
@@ -82,4 +82,7 @@ public class CompanyDaoImpl extends AbstractDao<Integer, Company> implements
 		delete(company);
 	}
 
+	public void updateCompany(Company company) {
+		update(company);
+	}
 }

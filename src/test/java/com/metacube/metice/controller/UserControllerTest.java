@@ -3,9 +3,13 @@ package com.metacube.metice.controller;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+import java.io.InputStream;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import org.hibernate.event.spi.PostCollectionRecreateEvent;
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -20,6 +24,8 @@ import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.context.WebApplicationContext;
 
 import com.metacube.metice.Entity.Company;
@@ -51,6 +57,7 @@ public class UserControllerTest {
 	User user = new User();
 	User inValidUser = new User();
 	Company company = new Company();
+	String userJson = null;
 
 	@Autowired
 	private WebApplicationContext webApplicationContext;
@@ -89,11 +96,11 @@ public class UserControllerTest {
 		inValidUser.setAdmin(false);
 		inValidUser.setPermissions(1);
 		inValidUser.setCompany(company);
+		userJson = "{'userId':8,'name',:'Girdhari Agrawal','email':'girdhari258@gmail.com','role':{'roleId':7,'name':'Project Manager'},'dob':'1994-12-07','doa':'2017-02-22','picture':'https://lh3.googleusercontent.com/-XdUIqdMkCWA/AAAAAAAAAAI/AAAAAAAAAAA/4252rscbv5M/photo.jpg','valid':true,'admin':true,'permissions':3,'company':{'companyId':3,'name':'Apperio'}}"; 
 		
 
 	}
-
-
+	
 	@Test
 	@Rollback(true)
 	@Transactional
@@ -116,6 +123,15 @@ public class UserControllerTest {
 	@Test
 	@Rollback(true)
 	@Transactional
+	public void negativeSessionNullTestGetGoogleUserInfo() throws Exception {
+		this.mockMvc.perform(
+				get("/getGoogleUserInfo").accept(MediaType.ALL))
+						.andExpect(status().isForbidden());
+	}
+	
+	@Test
+	@Rollback(true)
+	@Transactional
 	public void positiveTestGetCurrentUserInfo() throws Exception {
 		session.setAttribute("user", user);
 		this.mockMvc.perform(
@@ -130,6 +146,15 @@ public class UserControllerTest {
 		this.mockMvc.perform(
 				get("/getCurrentUser").accept(MediaType.ALL)
 						.session(session)).andExpect(status().isForbidden());
+	}
+	
+	@Test
+	@Rollback(true)
+	@Transactional
+	public void negativeSessionNullTestGetCurrentUserInfo() throws Exception {
+		this.mockMvc.perform(
+				get("/getCurrentUser").accept(MediaType.ALL))
+						.andExpect(status().isForbidden());
 	}
 	
 	@Test
@@ -158,6 +183,15 @@ public class UserControllerTest {
 	@Test
 	@Rollback(true)
 	@Transactional
+	public void negativeSessionNullTestGetAllInvalidUserRequests() throws Exception {
+		this.mockMvc.perform(
+				get("/getAllInvalidUserRequests").accept(MediaType.ALL))
+						.andExpect(status().isForbidden());
+	}
+	
+	@Test
+	@Rollback(true)
+	@Transactional
 	public void positiveTestGetTodaysBirthday() throws Exception {
 		session.setAttribute("user", user);
 		this.mockMvc.perform(
@@ -177,6 +211,15 @@ public class UserControllerTest {
 	@Test
 	@Rollback(true)
 	@Transactional
+	public void negativeSessionNullTestGetTodaysBirthday() throws Exception {
+		this.mockMvc.perform(
+				get("/getTodayBirthdays").accept(MediaType.ALL))
+						.andExpect(status().isForbidden());
+	}
+	
+	@Test
+	@Rollback(true)
+	@Transactional
 	public void positiveTestGetTodayAnniversaries() throws Exception {
 		session.setAttribute("user", user);
 		this.mockMvc.perform(
@@ -191,6 +234,15 @@ public class UserControllerTest {
 		this.mockMvc.perform(
 				get("/getTodayAnniversaries").accept(MediaType.ALL)
 						.session(session)).andExpect(status().isForbidden());
+	}
+	
+	@Test
+	@Rollback(true)
+	@Transactional
+	public void negativeSessionNullTestGetTodayAnniversaries() throws Exception {
+		this.mockMvc.perform(
+				get("/getTodayAnniversaries").accept(MediaType.ALL))
+						.andExpect(status().isForbidden());
 	}
 	
 	@Test
@@ -220,6 +272,15 @@ public class UserControllerTest {
 		this.mockMvc.perform(
 				get("/getAllValidUsersByCompany").accept(MediaType.ALL)
 						.session(session)).andExpect(status().isForbidden());
+	}
+	
+	@Test
+	@Rollback(true)
+	@Transactional
+	public void negativeSessionNullTestGetAllValidUserRequests() throws Exception {
+		this.mockMvc.perform(
+				get("/getAllValidUsersByCompany").accept(MediaType.ALL))
+						.andExpect(status().isForbidden());
 	}
 	
 }

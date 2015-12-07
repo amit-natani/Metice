@@ -5,12 +5,14 @@
  */
 
 
-metice.controller("userController",['$scope','$http', '$window', function($scope, $http, $window) {
+metice.controller("userController",['$scope','$http', '$window','UserService','NoticeService', function($scope, $http, $window, UserService, NoticeService) {
 
-	$http.get("./getCurrentUser").success(function(user, status) {
+	UserService.getCurrentUser()
+	.success(function(user, status) {
 		$scope.user = user;
 	});
-	$http.get("./getAllNoticesByCompany").success(function(notices, status) {
+	UserService.getAllNotices()
+	.success(function(notices, status) {
 		if(status == 200) {
 			$scope.notices = notices;
 		} else if(status == 204) {
@@ -18,9 +20,9 @@ metice.controller("userController",['$scope','$http', '$window', function($scope
 		}
 	});
 
-	$scope.updateuser = function() {
+	$scope.updateuser = function(user) {
 		$scope.isSuccess = true;
-		$http.post("./updateUser",$scope.user)
+		UserService.updateUser($scope.user)
 			.success(function(data, status) {
 				if(status == 200) {  
 					$scope.alert = true;
@@ -35,11 +37,15 @@ metice.controller("userController",['$scope','$http', '$window', function($scope
 					$scope.alertMessage = "An Error occured while updating data";
 			});
 	}
-	$http.get("./getTodayBirthdays").success(function(events) {
+	
+	UserService.getTodayBirthdays()
+	.success(function(events) {
 				$scope.events = events;
 	});
+	
 	$scope.logout = function() {
-			$http.get("./logout").success(function(data, status) {
+			User.logout()
+			.success(function(data, status) {
 				$window.location.href = "./index.html";
 			})};
 	}]);

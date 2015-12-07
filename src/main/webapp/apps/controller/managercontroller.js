@@ -1,4 +1,4 @@
-metice.controller('managerController', ['$scope','$http','$window','$timeout', function($scope, $http, $window, $timeout) {
+metice.controller('managerController', ['$scope','$http','$window','$timeout','UserService','NoticeService', function($scope, $http, $window, $timeout, UserService, NoticeService) {
 
 	$scope.date = new Date();
 	
@@ -18,12 +18,13 @@ metice.controller('managerController', ['$scope','$http','$window','$timeout', f
 	$scope.userAlert = false;
 	
 	
-	$http.get("./getCurrentUser").success( function(user) {
+	UserService.getCurrentUser()
+	.success( function(user) {
 		$scope.user = user;
 	});
 	
 		
-	$http.get('./getAllNoticesByCompany')
+	NoticeService.getAllNotices()
 	.success( function(notices, status) {
 		if(status == 204) {
 			console.log("No User Found");
@@ -42,7 +43,7 @@ metice.controller('managerController', ['$scope','$http','$window','$timeout', f
 	
 		  
 	  $scope.logout = function() {
-		  $http.get("./logout")
+		  UserService.logout()
 	          .success(function(data) {
 	        	  alert("Logout Successfully");
 	        	  $window.location.href = "./index.html";
@@ -53,8 +54,8 @@ metice.controller('managerController', ['$scope','$http','$window','$timeout', f
 		  ) ;
 		};
 		
-	$scope.createNotice = function() {
-		$http.post("./saveNotice", $scope.notice)
+	$scope.createNotice = function(notice) {
+		NoticeService.saveNotice(notice)
 			.success(function() {
 				$scope.postAlert = true;
 	        	  $scope.isPostSuccess = true;

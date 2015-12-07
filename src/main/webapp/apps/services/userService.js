@@ -6,7 +6,7 @@
  * Description: Script contains angularjs services for user details
  */
 
-metice.factory('userService',['$http',function($http) {
+metice.factory('UserService',['$http',function($http) {
 	var factory = {};
 
 	factory.getCurrentUser = function() {
@@ -27,6 +27,29 @@ metice.factory('userService',['$http',function($http) {
 
 	factory.saveUser = function(user) {
 		return $http.post("./saveUser",user);
+	}
+	
+	factory.getAllValidUsers = function() {
+		return $http.get('./getAllValidUsersByCompany');
+	}
+	
+	factory.getAllInvalidUsers = function() {
+		return $http.get('./getAllInvalidUserRequests');
+	}
+	
+	factory.deleteUser = function(email) {
+		return $http.post("./deleteUser", email);
+	}
+	
+	factory.acceptUser = function(userDetail) {
+		return $http.post("./updateUserByAdmin",userDetail);
+	}
+	factory.logout = function() {
+		return $http.get("./logout");
+	}
+	
+	factory.getTodayBirthdays = function() {
+		return $http.get("./getTodayBirthdays");
 	}
 	return factory;
 }]);

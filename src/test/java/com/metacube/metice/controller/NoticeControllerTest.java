@@ -25,9 +25,11 @@ import org.springframework.web.context.WebApplicationContext;
 
 import com.metacube.metice.Entity.Company;
 import com.metacube.metice.Entity.Notice;
+import com.metacube.metice.Entity.Role;
 import com.metacube.metice.Entity.User;
 import com.metacube.metice.dao.impl.CompanyDaoImpl;
 import com.metacube.metice.dao.impl.NoticeDaoImpl;
+import com.metacube.metice.dao.impl.RoleDaoImpl;
 import com.metacube.metice.dao.impl.UserDaoImpl;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -48,11 +50,15 @@ public class NoticeControllerTest {
 
 	@Autowired
 	private UserDaoImpl userDaoImpl;
+	
+	@Autowired
+	private RoleDaoImpl roleDaoImpl;
 
 	Notice notice = new Notice();
 	Notice notice1 = new Notice();
 	User user = new User();
 	Company company = new Company();
+	Role role = new Role();
 
 	@Autowired
 	private WebApplicationContext webApplicationContext;
@@ -71,10 +77,14 @@ public class NoticeControllerTest {
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
-		notice.setTitle("Diwali party");
-		notice.setContent("Diwali party on 21 nov");
-		notice.setPostDate(postDate);
-		notice.setExpireDate(expireDate);
+
+		company.setCompanyId(1);
+		company.setName("Company-Name");
+		companyDaoImpl.createCompany(company);
+		role.setName("Manager");
+		roleDaoImpl.createRole(role);
+		user.setRole(role);
+		user.setUserId(2);
 		user.setName("User Name");
 		user.setEmail("User.name@metacube.com");
 		user.setDob(dob);
@@ -82,21 +92,28 @@ public class NoticeControllerTest {
 		user.setPicture("https://lh4.googleusercontent.com/-N5NiXjGy98Q/AAAAAAAAAAI/AAAAAAAAAB4/GhIWSa3iyR4/photo.jpg");
 		user.setValid(true);
 		user.setAdmin(true);
-		user.setPermissions(1);
-		company.setName("CompanyName");
-		companyDaoImpl.createCompany(company);
 		user.setCompany(company);
+		user.setPermissions(3);
+		userDaoImpl.saveUser(user);
+		notice.setTitle("Diwali party");
+		notice.setContent("Diwali party on 21 nov");
+		notice.setPostDate(postDate);
+		notice.setLastEditedDate(postDate);
+		notice.setExpireDate(expireDate);
 		notice.setPostedBy(user);
+		notice.setLastEditedBy(user);
 		notice.setCompany(company);
 		notice.setTagList("party");
-		notice1.setNoticeId(3);
-		notice1.setTitle("Diwali party Boom");
+		notice1.setTitle("Diwali party");
 		notice1.setContent("Diwali party on 21 nov");
 		notice1.setPostDate(postDate);
 		notice1.setExpireDate(expireDate);
 		notice1.setPostedBy(user);
+		notice1.setLastEditedBy(user);
+		notice1.setLastEditedDate(postDate);
 		notice1.setCompany(company);
 		notice1.setTagList("party");
+		
 
 	}
 

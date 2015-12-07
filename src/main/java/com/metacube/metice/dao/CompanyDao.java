@@ -52,5 +52,7 @@ public interface CompanyDao {
 	 *            : is the object of company which have to be delete
 	 */
 	void deleteCompany(Company company);
+	
+	public void updateCompany(Company company);
 
 }

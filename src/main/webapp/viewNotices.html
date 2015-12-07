@@ -1,7 +1,7 @@
 <div ng-controller="checkPermission">
-	<div class="search-bar position-fix">
+	<div class="search-bar position-fixed">
 		<div class="has-feedback">
-			<input type="text" ng-model="searchfilter.title" class="form-control">
+			<input type="text" ng-model="searchfilter.title" class="form-control" placeholder="Enter title or tag name to search">
 			<i class="glyphicon glyphicon-search form-control-feedback"></i>
 		</div>
 	</div>
@@ -17,12 +17,10 @@
 		    	<h3 class="panel-title">{{notice.title}}</h3>
 			</div>
 			<div class="panel-body" ng-click="setNoticeDetails(notice)" data-target="#noticeDetails" data-toggle="modal">
-				<div>
-			    	<strong class="col-lg-3">Posted On : </strong><span class="col-lg-9 content"> {{notice.postDate}}</span><br/>
-					<strong class="col-lg-3">Posted By : </strong><span class="col-lg-9 content" ng-bind-html=notice.postedBy.name></span><br />
-					<strong class="col-lg-3">Keywords / Tags : </strong><span class="col-lg-9 col-md-9 col-sm-9 content">{{notice.tagList}}</span><br>
-					<strong class="col-lg-3">Body : </strong><div class="col-lg-9 content" ng-bind-html=notice.content></div><br/>
-		    	</div>
+		    	<div class="row"><strong class="col-lg-2">Posted On : </strong><span class="col-lg-10 content pull-right"> {{notice.postDate}}</span></div>
+				<div class="row"><strong class="col-lg-2">Posted By : </strong><span class="col-lg-10 content" ng-bind-html=notice.postedBy.name></span><br /></div>
+				<div class="row"><strong class="col-lg-2">Tags : </strong><span class="col-lg-10 col-md-9 col-sm-9 content">{{notice.tagList}}</span><br></div>
+				<div class="row"><strong class="col-lg-2">Body : </strong><div class="col-lg-10 content" ng-bind-html=notice.content></div><br/></div>
 		 	</div>
 		</div>	
 	</div>

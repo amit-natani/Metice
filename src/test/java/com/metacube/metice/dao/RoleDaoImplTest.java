@@ -23,10 +23,12 @@ public class RoleDaoImplTest {
 	private RoleDaoImpl roleDaoImpl;
 	
 	Role role = new Role();
+	Role role1 = new Role();
 	
 	@Before
 	public void setUp() throws Exception {
 		role.setName("TSE");
+		role1.setName("manager");
 	}
 
 	@Test
@@ -51,6 +53,15 @@ public class RoleDaoImplTest {
 	public void testGetRoleByName() {
 		roleDaoImpl.createRole(role);
 		assertEquals(role, roleDaoImpl.getRoleByName("TSE"));
+	}
+	
+	@Test
+	@Transactional
+	@Rollback(true)
+	public void testGetRoles() {
+		roleDaoImpl.createRole(role);
+		roleDaoImpl.createRole(role1);
+		assertEquals(2, roleDaoImpl.getRoles().size());
 	}
 	
 	@After

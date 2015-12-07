@@ -9,7 +9,7 @@
  * Script contains all company related services 
  */
 
-metice.factory('companyService', ['$http', function($http) {
+metice.factory('CompanyService', ['$http', function($http) {
 	var factory = {};
 	factory.getAllCompanies = function() {
 		return $http.get("http://localhost:8080/Metice/getAllCompanies");

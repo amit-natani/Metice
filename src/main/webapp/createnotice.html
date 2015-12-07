@@ -1,4 +1,4 @@
-<div ng-controller="adminController">
+<div ng-controller="adminController" class="position-fixed">
 	<div class="alert wow bounceIn" ng-show="postAlert" ng-class="isPostSuccess ? 'alert-success' : 'alert-danger'">
 		<strong>{{postAlertCode}}!</strong> {{postAlertMessage}}.
 	</div>
@@ -6,39 +6,20 @@
 	<legend>Create Notice</legend>
 	<div class="form-group col-lg-12">
 		<label class="control-label">Notice Title</label>
-		<input type="text" class="form-control" ng-model="notice.title" required>
+		<input type="text" class="form-control" ng-model="notice.title" placeholder="Enter Title For Notice">
 	</div>
-	<!-- <div class="form-group col-lg-6">
-		<label class="control-label">Posted On</label>
-		<span class="form-control">{{date | date:'yyyy-MM-dd'}}</span>
-	</div> -->
-</div>
 	<div class="form-group col-lg-6">
 		<label class="control-label">Expires On</label>
-		<div class='input-group date' data-provide="datepicker"id='datetimepicker1'>
-    	    <input class="datepicker form-control"data-date-format="dd-mm-yyyy" ng-model="notice.expireDate" placeholder="dd-mm-yyyy" required/>
-	        <span class="input-group-addon">
-	            <span class="glyphicon glyphicon-calendar"></span>
-	        </span>
-	    </div>
+   	    <input class="datepicker form-control" ng-model="notice.expireDate" placeholder="yyyy-mm-dd" required/>
 	</div>
 	<div class="form-group col-lg-6">
 		<label class="control-label">Tags</label>
-		<input type="text" class="form-control" ng-model="notice.tagList" required>
+		<input type="text" class="form-control" ng-model="notice.tagList" placeholder="Enter comma seperated list of tags" required>
 	</div>
-	<!-- <div class="form-group col-lg-6">
-		<label class="control-label">Visible To</label>
-		<input type="text" list="roles" class="form-control" ng-model="notice.roles">
-		<datalist id="roles">
-			<select >
-				<option ng-repeat="role in roles">{{role.name}}</option>
-			</select>
-		</datalist>
-	</div> -->
 	
 	<div class="form-group col-lg-12">
 		<label class="control-label">Notice</label>
-		<div text-angular ng-model="notice.content" class="notice-content" required>
+		<div text-angular ng-model="notice.content" class="notice-content" placeholder="Enter Something to post"required>
 		</div>
 	</div>
 	<div class="form-group">

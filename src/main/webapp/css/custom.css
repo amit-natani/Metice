@@ -4,36 +4,41 @@
 	background : url("../img/background.jpeg") no-repeat center center fixed;
 	background-size : cover;
 }
-.navbar-inverse {
-	background-color: #0096d6;
-	border-bottom: #F2635F;
-}
+
 .signupbackground {
 	background : url("../img/background2.jpg") no-repeat center center fixed;
 	background-size : cover;
 }
+
+.main-heading {
+	font-size : 80px;
+	margin-top : 200px;
+	margin-left : 100px;
+	height : 100vh;
+}
+
+/* navbar start */
+
+.navbar-inverse .navbar-nav>li>a{
+	height : 50px;
+	margin-top : 10px;
+	margin-bottom : 10px;
+	color: #ffffff;
+}
+
+.navbar-brand {
+	padding-top :0px;
+}
+
+/* navbar end */
 /* body background image end */
 .no-padding {
 	padding : 0%;
 }
-.small-margin-right {
-	margin-right : 80px;
-}
 .notice-content {
 	word-wrap : break-word;
 }
-.notice-background {
-	background-image : url("../img/background-template3.jpg");
-}
-.notice-background .panel-heading {
-	background-color : rgba(0,0,0,0);
-	border-color : rgba(0,0,0,0);
-	color : white;
-}
-.main-heading {
-	padding-top : 200px;
-	height : 100vh;
-}
+
 .content {
 	height : 15px;
 	overflow : hidden;
@@ -44,17 +49,14 @@
 }
 /* signup form start */
 .signup-form {
-	margin-top: 20px;
+	margin-top: 20vh;
 	color: #000000;
 	background: #ffffff;
 	border: 2px solid #000000;
 	border-radius: 10px;
 }
-.signup-form input{
+.signup-form input, .signup-form select {
 	border : 2px black solid;	
-}
-.signup-form textarea {
-	border : 2px black solid;
 }
 
 .signup-form .btn {
@@ -85,12 +87,7 @@
 	padding-top:60px;
 	color : #ffffff;
 }
-/* navbar start */
 
-.navbar-inverse .navbar-nav>li>a, .navbar-inverse .navbar-brand {
-	color: #ffffff;
-}
-/* navbar end */
 .left-inner-addon {
     position: relative;
 }
@@ -137,11 +134,18 @@ a[href*="mailto:"]:hover {
 /* typed text start */
 .animated-text {
 	margin-left : 60px;
-	font-size : 60px;
+	font-size : 80px;
 	color : white;
 }
-
+.signin-button {
+	margin-top : 100px;
+	margin-left : 30%;
+}
+.position-fixed {
+	margin-top : 30px;
+}
 .search-bar {
+	
 	padding : 10px;
 	background-color: #123456;
 }
@@ -171,22 +175,18 @@ a[href*="mailto:"]:hover {
 /* how it works start */
 .howitworks {
 	background: rgba(255,255,255,1);
-	margin-top : 20px;
-	padding-top : 30px;
+	padding-top : 60px;
 	padding-bottom : 30px;
-	height : 100vh;
 }
-
 .aboutus {
-	margin-top : 20px;
-	background: rgba(220,220,220,1);
+	background : #6699ff;
+	margin-top : 103vh;
+	background: rgba(1,1,1);
 	padding-top : 30px;
 	padding-bottom : 30px;
-	height : 100vh;
 }
 .small-margin {
-	margin-top : 10px;
-	margin-bottom : 10px;
+	margin-top : 20px;
 }
 .border-bottom {
 	border-bottom: 2px solid #0097D6;
@@ -228,20 +228,28 @@ a[href*="mailto:"]:hover {
 }
 /* how it works end */
 
-.contactus {
-	font-size : 20px;
-}
 
 /* footer start */
 .footer {
-	height: auto;
-	padding-top: 350px;
+	margin: 0px;
+	font-size : 20px;
 	background: rgba(1,1,1,0.1);
 	color: #ffffff;
 	width: 100%;
+	margin-top : 15vh;
 }
 
 .footer:hover {
 	text-decoration: none;
 }
 /* footer ends */
+
+#google-bt{
+	width:100%;
+}
+#google-bt:hover{
+	background-color : rgba(0,0,0,0.1);
+}
+
+
+

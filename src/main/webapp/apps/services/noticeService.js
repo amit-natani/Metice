@@ -9,11 +9,29 @@
  * Script contains notice service methods 
  */
 
-metice.factory('noticeService', ['$http', function($http) {
+metice.factory('NoticeService', ['$http', function($http) {
 	var factory = {};
 	
 	factory.getAllNotices = function() {
-		return $http.get("http://localhost:8080/Metice/getAllNoticesByCompany");
+		return $http.get("./getAllNoticesByCompany");
+	}
+	
+	factory.getAllArchivedNotices = function() {
+		return $http.get('./getAllArchivedNoticesByCompany');
+	}
+	
+	factory.unarchiveNotice = function(noticeId) {
+		return $http.post('./unArchiveNotice', noticeId);
+	}
+	factory.archiveNotice = function(noticeId) {
+		return $http.post("./archiveNotice", noticeId);
+	}
+	
+	factory.deleteNotice = function(noticeId) {
+		return $http.post("./deleteNotice", noticeId);
+	}
+	factory.saveNotice = function(notice) {
+		return $http.post("./saveNotice", notice);
 	}
 	return factory;
 }])
