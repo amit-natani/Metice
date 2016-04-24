@@ -91,6 +91,11 @@ public class NoticeController {
 			if(notice == null) {
 				return new ResponseEntity<Void>(HttpStatus.BAD_REQUEST);
 			} else {
+				if(!jsonObj.has("noticeId")) {
+					noticeService.saveNotice(notice);
+				} else {
+					noticeService.updateNotice(notice);
+				}
 				return new ResponseEntity<Void>(HttpStatus.OK);
 			}
 		}
@@ -256,7 +261,7 @@ public class NoticeController {
 	 * 			else if noticeList is empty them return HttpStatus.NO_CONTENT
 	 * 			else return noticeList with status HttpStatus.OK
 	 */
-	@RequestMapping(value = "/getAllNoticeByTag/{tag}", method = RequestMethod.POST)
+	@RequestMapping(value = "/getAllNoticeByTag/{tag}", method = RequestMethod.GET)
 	public ResponseEntity<List<Notice>> getAllNoticeByTag (
 			HttpServletRequest request, @PathVariable("tag") String tag) {
 		HttpSession session = request.getSession(false);

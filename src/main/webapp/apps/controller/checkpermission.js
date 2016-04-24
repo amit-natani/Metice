@@ -2,11 +2,11 @@
  * 
  */
 
-metice.controller("checkPermission", ['$scope', '$http','$timeout','$rootScope', function($scope, $http, $timeout, $rootScope) {
+metice.controller("checkPermission", ['$scope','$timeout','$rootScope','UserService','NoticeService', function($scope, $timeout, $rootScope, UserService, NoticeService) {
 
 	$scope.isEditable = false;
 
-	$http.get("./getCurrentUser").success(function(user) {
+	UserService.getCurrentUser().success(function(user) {
 		if(user.permissions == 3) {
 			$scope.isEditable = true;
 		} else if(user.permission == 2) {
@@ -16,7 +16,7 @@ metice.controller("checkPermission", ['$scope', '$http','$timeout','$rootScope',
 		}
 	});
 	$scope.archiveNotice = function(notice) {
-		$http.post("./archiveNotice", notice.noticeId)
+		NoticeService.archiveNotice(notice.noticeId)
 		.success( function(response) {
 			  $scope.isArchiveSuccess = true;
 			  $scope.archiveAlert = true;
@@ -32,11 +32,13 @@ metice.controller("checkPermission", ['$scope', '$http','$timeout','$rootScope',
 			$timeout(function() { $scope.archiveAlert = false;}, 3000);
 		});
 	}
+	
 	$scope.setValue = function(notice) {
 		$rootScope.notice = notice;
 	}
+	
 	$scope.deleteNotice = function(notice) {
-		$http.post("./deleteNotice", notice.noticeId)
+		NoticeService.deleteNotice(notice.noticeId)
 		.success( function(response) {
 			  $scope.isArchiveSuccess = true;
 			  $scope.archiveAlert = true;

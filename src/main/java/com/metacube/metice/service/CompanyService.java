@@ -23,4 +23,6 @@ public interface CompanyService {
 	Company getCompanyByName(String name);
 
 	void deleteCompany(Company company);
+	
+	void updateCompany(Company company);
 }

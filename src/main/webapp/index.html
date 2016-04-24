@@ -13,9 +13,6 @@
 <script src="js/wow.min.js"></script>
 <script src="js/typed.js"></script>
 <script src="js/script.js"></script>
-<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
-<meta http-equiv="Pragma" content="no-cache" />
-<meta http-equiv="Expires" content="0" />
 <script>
 $(function(){
     $(".typed-text").typed({
@@ -24,15 +21,17 @@ $(function(){
 		backDelay: 1000,
 		backSpeed: 20
     });
+	$(".typed-cursor").style.display = "none";
 });
+
 </script>
 </head>
-<body class="body" data-spy="scroll" data-target=".navbar" data-offset="50">
+<body class="body" data-spy="scroll" data-target=".navbar">
 	<!-- Starting of navbar -->
 	<div class="navbar navbar-inverse navbar-fixed-top">
 		<div class="container">
 			<div class="navbar-header">
-				<a href="Home" class="navbar-brand">Metice</a>
+				<a href="#" class="navbar-brand"><img src="img/favicon.png"></a>
 				<button type="button" class="navbar-toggle" data-toggle="collapse"
 					data-target="#myNavbar">
 					<span class="icon-bar"></span> <span class="icon-bar"></span> <span
@@ -44,89 +43,62 @@ $(function(){
 					<li><a href="#home">Home</a></li>
 					<li><a href="#howitworks">How it Works</a></li>
 					<li><a href="#aboutus">About Us</a></li>
-					<li><a href="#contactUs">Contact Us</a></li>
+					<li><a href="#contactus">Contact Us</a></li>
 				</ul>
 			</div>
 		</div>
 	</div>
 	<!-- Ending of navbar  -->
 	<!-- Starting of first section -->
-	<div class="main-heading pull-bottom container-fluid" id="home">
-		<div class="col-lg-6 col-md-7 animated-text visible-lg visible-md visible-sm">
+	<div class="main-heading container-fluid" id="home">
+		<div class="animated-text">
 			Metice means,
-			<div class="col-lg-offset-3 typed-text"></div>
-		</div>
-	
-		<div class="col-lg-4 col-md-4 col-sm-6 col-xs-11 pull-right formbody">
-			<div class="modal-header">
-				<h4 class="modal-title">Login</h4>
+			<div class="col-lg-12 col-lg-offset-1 col-md-6">
+				<div class="col-md-offset-2 typed-text" style="float:left;"></div>
 			</div>
-			<form action="Login" method="POST" class="form" role="form">
-				<div class="modal-body">
-					<div class="form-group">
-						<label for="username" class="control-label">Username</label> <input
-							type="text" name="username" class="form-control"
-							placeholder="Enter Username" required>
-					</div>
-					<div class="form-group">
-						<label for="password" class="form-label">Password</label> <input
-							type="password" name="password" class="form-control"
-							placeholder="Enter Password" required>
-					</div>
-					<div class="form-group row text-center">
-						<input type="submit"
-							class="btn btn-success col-lg-offset-3 col-lg-6 col-md-3"
-							value="Login">
-					</div>
-				</div>
-			</form>
-			<div class="form-group text-center">
-				<strong>OR</strong>
-			</div>
-			<div class="form-group row text-center">
-				<a
-					href="https://accounts.google.com/o/oauth2/auth?scope=email&amp;redirect_uri=http://localhost:8080/Metice/verify&amp;response_type=code&amp;client_id=977970780268-cq6q6hdc18f22shjpa25sn5v4d6da8a3.apps.googleusercontent.com&amp;approval_prompt=force"
-					class="btn btn-danger col-lg-offset-3 col-lg-6 col-md-4" href="#">
-					<i class="fa fa-google-plus"></i> Sign in with Google
-				</a>
+			<div class="col-lg-5 col-lg-offset-4 signin-button">
+				<a id="google-bt"href="https://accounts.google.com/o/oauth2/auth?scope=email&amp;redirect_uri=http://localhost:8080/Metice/verify&amp;response_type=code&amp;client_id=977970780268-cq6q6hdc18f22shjpa25sn5v4d6da8a3.apps.googleusercontent.com&amp;approval_prompt=force"
+						class="btn btn-danger btn-lg button" href="#">
+						<i class="fa fa-google-plus"></i	> Sign in with Google
+					</a>
 			</div>
 		</div>
 	</div>
 	<!-- Ending of first section -->
 	<!-- Starting of how it works -->
-		<div id="howitworks"class="col-lg-12 col-md-12-col-sm-12 text-center howitworks">
+		<div id="howitworks" class="col-lg-12 col-md-12-col-sm-12 text-center howitworks">
 			<div class="col-lg-12 text-center">
-				<h1 class="col-lg-offset-4 col-lg-4 border-bottom heading">How it Works</h1>
+				<h1 class="col-lg-offset-4 col-lg-4 col-md-offset-4 col-md-4 col-sm-offset-2 col-sm-8 border-bottom heading">How it Works</h1>
 			</div>
 			<div class="container col-lg-6">
-				<div class="col-lg-12 col-lg-offset-2 photo wow fadeInLeft"data-wow-duration=2s>
-					<img src="img/register-border.png">
+				<div class="col-lg-8 col-lg-offset-4 col-md-8 col-md-offset-4 col-sm-12 col-xs-12 photo wow fadeInLeft"data-wow-duration=2s>
+					<img src="img/register-border.png" class="img-responsive">
 				</div>
-				<div class="col-lg-12 col-lg-offset-2 wow fadeInLeft"data-wow-duration=2s>
+				<div class="col-lg-12 col-lg-push-1 col-md-12 col-sm-12  col-xs-12 wow fadeInLeft"data-wow-duration=2s>
 					1. You Sign up on Metice, using your email account
 				</div>
 			</div>
 			<div class="container col-lg-6">
-				<div class="col-lg-12 photo wow fadeInRight" data-wow-duration=2s>
-					<img src="img/verify-border.png">
+				<div class="col-lg-8 col-lg-offset-3 col-md-8 col-md-offset-4 col-sm-12 col-xs-12 photo wow fadeInRight" data-wow-duration=2s>
+					<img src="img/verify-border.png" class="img-responsive">
 				</div>
-				<div class="col-lg-12 wow fadeInRight" data-wow-duration=2s>2.
-					We verify your account and store data at our site</div>
+				<div class="col-lg-12  col-md-12 col-sm-12 col-xs-12 wow fadeInRight" data-wow-duration=2s>
+					2. We verify your account and store data at our site</div>
 			</div>
 			<div class="container col-lg-6">
-				<div class="col-lg-12 col-lg-offset-2 photo wow fadeInLeft"
+				<div class="col-lg-8 col-lg-offset-4 col-md-8 col-md-offset-4 col-sm-12 col-sm-12 col-xs-12 photo wow fadeInLeft"
 					data-wow-duration=2s>
-					<img src="img/manage-border.png">
+					<img src="img/manage-border.png" class="img-responsive">
 				</div>
-				<div class="col-lg-12 col-lg-offset-2 wow fadeInLeft"data-wow-duration=2s>
+				<div class="col-lg-12 col-lg-push-1 col-md-12 col-sm-12 col-xs-12 wow fadeInLeft"data-wow-duration=2s>
 					3. You Login and manange your notices and user
 				</div>
 			</div>
 			<div class="container col-lg-6">
-					<div class="col-lg-12 photo wow fadeInRight" data-wow-duration=2s>
-						<img src="img/enjoy-border.png">
+					<div class="col-lg-8 col-lg-offset-3 col-md-8 col-md-offset-4 col-sm-12 col-xs-12 photo wow fadeInRight" data-wow-duration=2s>
+						<img src="img/enjoy-border.png" class="img-responsive">
 					</div>
-				<div class="col-lg-12 wow fadeInRight" data-wow-duration=2s>
+				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 wow fadeInRight" data-wow-duration=2s>
 					4.You feel connected and informed all the time
 				</div>
 			</div>
@@ -139,9 +111,9 @@ $(function(){
 				<h1 class="col-lg-offset-4 col-lg-4 heading  border-bottom">About Us</h1>
 			</div>
 		<div class="row wow fadeInDown small-margin"  data-wow-duration=3s>
-			<div class="col-sm-3 col-lg-push-1 col-sm-offset-2 col-xs-5 col-xs-offset-1">
-			    <div class="ih-item circle effect13 from_left_and_right"><a href="#">
-		        <div class="img"><img src="./img/neerajsoni.jpg" alt="Neeraj Soni"></div>
+			<div class="col-lg-push-3 col-lg-4 col-md-push-3 col-md-4 col-sm-push-2 col-sm-8 col-xs-10 col-xs-push-1 ">
+			    <div class="ih-item circle effect13 from_left_and_right img-responsive"><a href="#">
+		        <div class="img img-responsive"><img src="./img/neerajsoni.jpg" alt="Neeraj Soni"></div>
 		        <div class="mask1"></div>
 		        <div class="mask2"></div>
 		        <div class="info">
@@ -149,9 +121,9 @@ $(function(){
 		          <p>Mr. Neeraj Soni</p>
 		        </div></a></div>
 		  </div>
-		  <div class="col-sm-3 col-lg-push-2 col-xs-4 col-sm-push-2">
-			    <div class="ih-item circle effect13 from_left_and_right"><a href="#">
-		        <div class="img"><img src="./img/amanagrawal.jpg" alt="Aman Agrawal"></div>
+		  <div class=" col-lg-push-3 col-lg-4 col-md-push-3 col-md-4 col-sm-push-2 col-sm-8 col-xs-10 col-xs-push-1 ">
+			    <div class="ih-item circle effect13 from_left_and_right img-responsive"><a href="#">
+		        <div class="img img-responsive"><img src="./img/amanagrawal.jpg" alt="Aman Agrawal"></div>
 		        <div class="mask1"></div>
 		        <div class="mask2"></div>
 		        <div class="info">
@@ -161,9 +133,9 @@ $(function(){
 		  </div>
 	  </div>
 	  <div class="row wow fadeInDown small-margin"  data-wow-duration=3s>
-		  <div class="col-sm-2  col-xs-5 col-xs-offset-1">
-			    <div class="ih-item circle effect13 from_left_and_right"><a href="#">
-		        <div class="img"><img src="./img/pankajagarwal.jpg" alt="Pankaj Agarwal"></div>
+		  <div class="col-lg-push-1 col-lg-2 col-md-push-1 col-md-2 col-sm-push-2 col-sm-10 col-xs-push-2 col-xs-10 ">
+			    <div class="ih-item circle effect13 from_left_and_right img-responsive"><a href="#">
+		        <div class="img img-responsive"><img src="./img/pankajagarwal.jpg" alt="Pankaj Agarwal"></div>
 		        <div class="mask1"></div>
 		        <div class="mask2"></div>
 		        <div class="info">
@@ -171,9 +143,9 @@ $(function(){
 		          <p>Pankaj Agarwal</p>
 		        </div></a></div>
 		  </div>
-		  <div class="col-sm-2 col-xs-4">
-			    <div class="ih-item circle effect13 from_left_and_right"><a href="#">
-		        <div class="img"><img src="./img/jyotigoyal.jpg" alt="Jyoti Goyal"></div>
+		  <div class="col-lg-push-1 col-lg-2 col-md-push-1 col-md-2 col-sm-push-2 col-sm-10 col-xs-push-2 col-xs-10 ">
+			    <div class="ih-item circle effect13 from_left_and_right img-responsive"><a href="#">
+		        <div class="img img-responsive"><img src="./img/jyotigoyal.jpg" alt="Jyoti Goyal"></div>
 		        <div class="mask1"></div>
 		        <div class="mask2"></div>
 		        <div class="info">
@@ -181,9 +153,9 @@ $(function(){
 		          <p>Jyoti Goyal</p>
 		        </div></a></div>
 		  </div>
-		  <div class="col-sm-2">
-			    <div class="ih-item circle effect13 from_left_and_right"><a href="#">
-		        <div class="img"><img src="./img/dharmendravaishnav.jpg" alt="Dharmendra Vaishnav"></div>
+		  <div class="col-lg-push-1 col-lg-2 col-md-push-1 col-md-2 col-sm-push-2 col-sm-10 col-xs-push-2 col-xs-10 ">
+			    <div class="ih-item circle effect13 from_left_and_right img-responsive"><a href="#">
+		        <div class="img img-responsive"><img src="./img/dharmendravaishnav.jpg" alt="Dharmendra Vaishnav"></div>
 		        <div class="mask1"></div>
 		        <div class="mask2"></div>
 		        <div class="info">
@@ -191,9 +163,9 @@ $(function(){
 		          <p>Dharmendra Vaishnav</p>
 		        </div></a></div>
 		  </div>
-		  <div class="col-sm-2 col-xs-4">
-			    <div class="ih-item circle effect13 from_left_and_right"><a href="#">
-		        <div class="img"><img src="./img/manishkumar.jpg" alt="Manish Kumar"></div>
+		  <div class="col-lg-push-1 col-lg-2 col-md-push-1 col-md-2 col-sm-push-2 col-sm-10 col-xs-push-2 col-xs-10">
+			    <div class="ih-item circle effect13 from_left_and_right img-responsive"><a href="#">
+		        <div class="img img-responsive"><img src="./img/manishkumar.jpg" alt="Manish Kumar"></div>
 		        <div class="mask1"></div>
 		        <div class="mask2"></div>
 		        <div class="info">
@@ -201,9 +173,9 @@ $(function(){
 		          <p>Manish Kumar</p>
 		        </div></a></div>
 		  </div>
-		  <div class="col-sm-2">
-			    <div class="ih-item circle effect13 from_left_and_right"><a href="#">
-		        <div class="img"><img src="./img/vishnusharma.jpg" alt="Vishnu Sharma"></div>
+		  <div class="col-lg-push-1 col-lg-2 col-md-push-1 col-md-2 col-sm-push-2 col-sm-10 col-xs-push-2 col-xs-10 ">
+			    <div class="ih-item circle effect13 from_left_and_right img-responsive"><a href="#">
+		        <div class="img img-responsive"><img src="./img/vishnusharma.jpg" alt="Vishnu Sharma"></div>
 		        <div class="mask1"></div>
 		        <div class="mask2"></div>
 		        <div class="info">
@@ -213,9 +185,9 @@ $(function(){
 		  </div>
 	  </div>
 	  <div class="row  wow fadeInDown small-margin" data-wow-duration=3s>
-		  <div class="col-sm-2 col-lg-offset-1">
-			    <div class="ih-item circle effect13 from_left_and_right"><a href="#">
-		        <div class="img"><img src="./img/girdhariagrawal.jpg" alt="Girdhari Agrawal"></div>
+		  <div class="col-lg-push-1 col-lg-2 col-md-push-1 col-md-2 col-sm-push-2 col-sm-10 col-xs-push-2 col-xs-10">
+			    <div class="ih-item circle effect13 from_left_and_right img-responsive"><a href="#">
+		        <div class="img img-responsive"><img src="./img/girdhariagrawal.jpg" alt="Girdhari Agrawal"></div>
 		        <div class="mask1"></div>
 		        <div class="mask2"></div>
 		        <div class="info">
@@ -223,9 +195,9 @@ $(function(){
 		          <p>Girdhari Agrawal</p>
 		        </div></a></div>
 		  </div>
-		  <div class="col-sm-2 col-xs-4">
-			    <div class="ih-item circle effect13 from_left_and_right"><a href="#">
-		        <div class="img"><img src="./img/riddhijain.jpg" alt="Riddhi Jain"></div>
+		  <div class="col-lg-push-1 col-lg-2 col-md-push-1 col-md-2 col-sm-push-2 col-sm-10 col-xs-push-2 col-xs-10">
+			    <div class="ih-item circle effect13 from_left_and_right img-responsive"><a href="#">
+		        <div class="img img-responsive"><img src="./img/riddhijain.jpg" alt="Riddhi Jain"></div>
 		        <div class="mask1"></div>
 		        <div class="mask2"></div>
 		        <div class="info">
@@ -233,9 +205,9 @@ $(function(){
 		          <p>Riddhi Jain</p>
 		        </div></a></div>
 		  </div>
-		  <div class="col-sm-2">
-			    <div class="ih-item circle effect13 from_left_and_right"><a href="#">
-		        <div class="img"><img src="./img/khemanshurao.jpg" alt="Khemanshu Rao"></div>
+		  <div class="col-lg-push-1 col-lg-2 col-md-push-1 col-md-2 col-sm-push-2 col-sm-10 col-xs-push-2 col-xs-10">
+			    <div class="ih-item circle effect13 from_left_and_right img-responsive"><a href="#">
+		        <div class="img img-responsive"><img src="./img/khemanshurao.jpg" alt="Khemanshu Rao"></div>
 		        <div class="mask1"></div>
 		        <div class="mask2"></div>
 		        <div class="info">
@@ -243,9 +215,9 @@ $(function(){
 		          <p>Khemanshu Rao</p>
 		        </div></a></div>
 		  </div>
-		  <div class="col-sm-2 col-xs-4">
-			    <div class="ih-item circle effect13 from_left_and_right"><a href="#">
-		        <div class="img"><img src="./img/banwarikevat.jpg" alt="Banwari Kevat"></div>
+		  <div class="col-lg-push-1 col-lg-2 col-md-push-1 col-md-2 col-sm-push-2 col-sm-10 col-xs-push-2 col-xs-10">
+			    <div class="ih-item circle effect13 from_left_and_right img-responsive" ><a href="#">
+		        <div class="img img-responsive"><img src="./img/banwarikevat.jpg" alt="Banwari Kevat" ></div>
 		        <div class="mask1"></div>
 		        <div class="mask2"></div>
 		        <div class="info">
@@ -253,9 +225,9 @@ $(function(){
 		          <p>Banwari Kevat</p>
 		        </div></a></div>
 		  </div>
-		  <div class="col-sm-2">
-			    <div class="ih-item circle effect13 from_left_and_right"><a href="#">
-		        <div class="img"><img src="./img/amitnatani.jpg" alt="Amit Natani"></div>
+		  <div class=" col-lg-push-1 col-lg-2 col-md-push-1 col-md-2 col-sm-push-2 col-sm-10 col-xs-push-2 col-xs-10">
+			    <div class="ih-item circle effect13 from_left_and_right img-responsive"><a href="#">
+		        <div class="img img-responsive"><img src="./img/amitnatani.jpg" alt="Amit Natani"></div>
 		        <div class="mask1"></div>
 		        <div class="mask2"></div>
 		        <div class="info">
@@ -267,13 +239,13 @@ $(function(){
 	</div>
 	<!-- Ending of About Us -->
 	<!-- Starting of Contact Us -->
-	<div class="footer contactus"id="contactus">
-		<div class="container-fluid footer">
+	<div class="footer"id="contactus" style="margin: 0px;"> 
+		<div class="container-fluid">
 			<div class="row">
 				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 					<h2 align="center"> Contact Us </h2>
 				</div>
-				<div class="col-lg-3 col-lg-push-2 col-md-4 col-sm-4 col-xs-12 text-center">
+				<div class="col-lg-3 col-lg-offset-1 col-md-4 col-sm-4 col-xs-12 text-center">
 					<span class="glyphicon glyphicon-map-marker contact-icon"></span>
 					<br class="hidden-xs">
 					<hr class="hidden-xs">

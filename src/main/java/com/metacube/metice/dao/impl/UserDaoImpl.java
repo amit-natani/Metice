@@ -47,7 +47,7 @@ public class UserDaoImpl extends AbstractDao<Integer, User> implements UserDao {
 	 *            : is the object of User which have to be save
 	 */
 	public void saveUser(User user) {
-		saveOrUpdate(user);
+		save(user);
 	}
 
 	/**

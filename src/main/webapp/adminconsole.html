@@ -16,6 +16,9 @@
 	<script src="apps/app.js"></script>
 	<script src="apps/controller/admincontroller.js"></script>
 	<script src="apps/controller/checkpermission.js"></script>
+	<script src="apps/services/userService.js"></script>
+	<script src="apps/services/roleService.js"></script>
+	<script src="apps/services/noticeService.js"></script>
 	<script src="js/textAngular-rangy.min.js"></script>
 	<script src="js/textAngular-sanitize.min.js"></script>
 	<script src="js/textAngular.min.js"></script>
@@ -34,7 +37,7 @@
 <body>
 	<nav class="navbar navbar-inverse navbar-fixed-top">
 		<div class="container">
-			<a href="#" class="navbar-brand">Metice</a>
+			<a href="#" class="navbar-brand"><a href="#" class="navbar-brand"><img src="img/favicon.png"></a></a>
 			<ul class="nav navbar-nav">
 				<li><a href="#loadUserRequest"><i class="fa fa-user-plus"></i> User Requests</a></li>
 				<li><a href="#showUsers"><i class="fa fa-user"></i> User Management </a></li>
@@ -81,10 +84,11 @@
 							</div>
 							<div class="form-group">
 								<label class="control-label" title="Company Name">Change Company Name</label>
-								<input type='text' name="companyName" ng-model ="user.companyName" placeholder="Company Name"class="form-control"required/>
+								<input type='text' name="companyName" ng-model ="user.company.name" placeholder="Company Name"class="form-control"required/>
 							</div>
-							<button class="btn btn-success col-lg-offset-2 col-md-offset-2  col-sm-offset-2 col-xs-offset-2"ng-click="updateuser()">Save Data <i class="glyphicon glyphicon-ok"></i></button>
-							<button type="reset" class="btn btn-warning col-lg-offset-2 col-md-offset-2 col-sm-offset-2 col-xs-offset-2">Reset Form <i class="glyphicon glyphicon-refresh"></i></button>
+							<div class="modal-footer">
+								<button class="btn btn-success col-lg-6 col-lg-offset-3 col-lg-offset-2 col-md-offset-2  col-sm-offset-2 col-xs-offset-2"ng-click="updateuser(user)">Save Data <i class="glyphicon glyphicon-ok"></i></button>
+							</div>
 						</form>
 					</div>
 				</div>
@@ -104,9 +108,9 @@
 						</div>
 					
 						<div class="input-group">
-	      					<input type="text" class="form-control" placeholder="Enter Role Name" ng-model="role.name">
+	      					<input type="text" class="form-control" placeholder="Enter Role Name" ng-model="newRole.name">
 	      					<span class="input-group-btn">
-	        					<button class="btn btn-default" ng-click="createRole()"><i class="fa fa-plus" title="Create Role"></i></button>
+	        					<button class="btn btn-default" ng-click="createRole(newRole)"><i class="fa fa-plus" title="Create Role"></i></button>
 	      					</span>
 	    				</div> 
 	    			</div>

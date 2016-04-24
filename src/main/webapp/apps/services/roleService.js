@@ -9,12 +9,16 @@
  * Script contains all the role related services
  */
 
-metice.factory('roleService', ['$http', function($http) {
+metice.factory('RoleService', ['$http', function($http) {
 		
 		var factory = {};
 		
 		factory.getRoles = function() {
 			return $http.get("http://localhost:8080/Metice/roles");
+		}
+		
+		factory.createRole = function(role) {
+			return $http.post("./createRole",role);
 		}
 		return factory;
 }])

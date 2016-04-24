@@ -22,6 +22,7 @@ import com.metacube.metice.Entity.User;
 import com.metacube.metice.service.CompanyService;
 import com.metacube.metice.service.impl.CompanyServiceImpl;
 
+
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = { "file:src/main/webapp/WEB-INF/applicationContext-servlet.xml" })
 @WebAppConfiguration
@@ -49,16 +50,7 @@ public class CompanyControllerTest {
 		user.setPicture("https://lh4.googleusercontent.com/-N5NiXjGy98Q/AAAAAAAAAAI/AAAAAAAAAB4/GhIWSa3iyR4/photo.jpg");
 
 	}
-
-	@Test
-	@Rollback(true)
-	@Transactional
-	public void negativeTestGetAllCompanies() throws Exception {
-		this.mockMvc.perform(
-				get("/getAllCompanies").accept(MediaType.ALL).session(session))
-				.andExpect(status().isUnauthorized());
-	}
-
+	
 	@Test
 	@Rollback(true)
 	@Transactional
@@ -68,5 +60,27 @@ public class CompanyControllerTest {
 				get("/getAllCompanies").accept(MediaType.ALL).session(session))
 				.andExpect(status().isOk());
 	}
+
+	@Test
+	@Rollback(true)
+	@Transactional
+	public void negativeTestGetAllCompanies() throws Exception {
+		this.mockMvc.perform(
+				get("/getAllCompanies").accept(MediaType.ALL).session(session))
+				.andExpect(status().isUnauthorized());
+	}
+	
+	@Test
+	@Rollback(true)
+	@Transactional
+	public void negativeGoogleUserTestGetAllCompanies() throws Exception {
+		
+		session.setAttribute("googleUser", null);
+		this.mockMvc.perform(
+				get("/getAllCompanies").accept(MediaType.ALL).session(session))
+				.andExpect(status().isUnauthorized());
+	}
+
+	
 
 }

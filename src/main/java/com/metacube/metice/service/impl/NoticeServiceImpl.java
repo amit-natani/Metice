@@ -109,7 +109,6 @@ public class NoticeServiceImpl implements NoticeService {
 					notice.setExpireDate(formatter.parse(expireDate));
 					notice.setLastEditedBy(user);
 					notice.setLastEditedDate(date);
-					updateNotice(notice);
 					return notice;
 				}
 			}

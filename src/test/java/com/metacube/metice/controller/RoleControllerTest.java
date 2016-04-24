@@ -57,24 +57,24 @@ public class RoleControllerTest {
 	User user = new User();
 	Company company = new Company();
 	Role role = new Role();
+	Role role1 = new Role();
 
 	@Before
 	public void setUp() throws java.text.ParseException {
 		this.mockMvc = MockMvcBuilders.webAppContextSetup(
 				this.webApplicationContext).build();
 		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-mm-dd");
-		Date dob = null, doa = null, postDate = null, expireDate = null;
+		Date dob = null, doa = null;
 		try {
 			dob = simpleDateFormat.parse("1993-02-08");
 			doa = simpleDateFormat.parse("2015-01-12");
-			postDate = simpleDateFormat.parse("2015-01-12");
-			expireDate = simpleDateFormat.parse("2015-01-12");
-			System.out.println("doa" + doa + " dob" + dob);
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
-		role.setName("role1");
+		role.setName("TSE");
+		role1.setName("manager");
 		roleService.createRole(role);
+		roleService.createRole(role1);
 		company.setName("CompanyName");
 		companyServiceImpl.createCompany(company);
 		user.setName("User Name");
@@ -88,15 +88,7 @@ public class RoleControllerTest {
 		user.setRole(role);
 		user.setCompany(company);
 	}
-
-	@Test
-	@Rollback(true)
-	@Transactional
-	public void negativeTestGetAllRoles() throws Exception {
-		this.mockMvc.perform(
-				get("/roles").accept(MediaType.ALL))
-				.andExpect(status().isForbidden());
-	}
+	
 
 	@Test
 	@Rollback(true)
@@ -107,6 +99,16 @@ public class RoleControllerTest {
 				get("/roles").accept(MediaType.ALL).session(session))
 				.andExpect(status().isOk());
 	}
+	
+	@Test
+	@Rollback(true)
+	@Transactional
+	public void negativeTestGetAllRoles() throws Exception {
+		this.mockMvc.perform(
+				get("/roles").accept(MediaType.ALL))
+				.andExpect(status().isForbidden());
+	}
+
 	
 
 }

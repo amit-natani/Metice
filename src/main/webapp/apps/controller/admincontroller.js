@@ -1,4 +1,4 @@
-metice.controller('adminController', ['$scope','$http','$window','$timeout', function($scope, $http, $window, $timeout) {
+metice.controller('adminController', ['$scope','$window','$timeout','UserService','RoleService','NoticeService', function($scope, $window, $timeout,UserService,RoleService,NoticeService) {
 
 	$scope.date = new Date();
 	
@@ -18,16 +18,35 @@ metice.controller('adminController', ['$scope','$http','$window','$timeout', fun
 	$scope.userAlert = false;
 	
 	
-	$http.get("./getCurrentUser").success( function(user) {
+	UserService.getCurrentUser().success(function(user) {
 		$scope.user = user;
 	});
 	
 	
-	$http.get("./roles").success(function(roles) {
+	RoleService.getRoles().success(function(roles) {
 		$scope.roles = roles;
 	});
 	
-	$http.get('./getAllValidUsersByCompany')
+	$scope.updateuser = function(user) {
+		$scope.isSuccess = true;
+		UserService.updateUser(user)
+			.success(function(data, status) {
+				if(status == 200) {  
+					$scope.alert = true;
+					$scope.isSuccess = true;
+					$scope.alertCode = "Success";
+					$scope.alertMessage = "Your data has been successfully updated";
+				}
+			}).error(function(status) {
+					$scope.alert = true;
+					$scope.isSuccess = false;
+					$scope.alertCode = "Error";
+					$scope.alertMessage = "An Error occured while updating data";
+			});
+	}
+	
+	/* Getting all valid users */
+	UserService.getAllValidUsers()
 	.success( function(users, status) {
 		if(status == 401) {
 			$window.location.href = "./noaccess.html";
@@ -41,7 +60,8 @@ metice.controller('adminController', ['$scope','$http','$window','$timeout', fun
 		
 	});
 	
-	$http.get('./getAllNoticesByCompany')
+	/* Getting all notices of company */
+	NoticeService.getAllNotices()
 	.success( function(notices, status) {
 		if(status == 204) {
 			console.log("No User Found");
@@ -58,7 +78,8 @@ metice.controller('adminController', ['$scope','$http','$window','$timeout', fun
 		}
 	});
 	
-	$http.get('./getAllArchivedNoticesByCompany')
+	/* Getting all archived notices of company */
+	NoticeService.getAllArchivedNotices()
 	.success( function(notices, status) {
 		if(status == 204) {
 			console.log("No User Found");
@@ -75,8 +96,10 @@ metice.controller('adminController', ['$scope','$http','$window','$timeout', fun
 		}
 	});
 	
+	
+	/* unarchiving notice */
 	$scope.unarchiveNotice = function(notice) {
-		$http.post('./unArchiveNotice', notice.noticeId)
+		NoticeService.unarchiveNotice(notice.noticeId)
 		.success( function(notices, status) {
 			if(status == 204) {
 				console.log("No User Found");
@@ -93,7 +116,9 @@ metice.controller('adminController', ['$scope','$http','$window','$timeout', fun
 			}
 		});
 	}
-	$http.get('./getAllInvalidUserRequests')
+	
+	/* Getting all user requests */
+	UserService.getAllInvalidUsers()
 	.success( function(requests, status) {
 		if(status == 204) {
 			console.log("No User Found");
@@ -110,12 +135,12 @@ metice.controller('adminController', ['$scope','$http','$window','$timeout', fun
 		}
 	});
 	
-	 
+	/* Deleting a user */
 	  $scope.deleteUser = function(userInformation) {
 		  $scope.isUserSuccess = true;
 		  $scope.userAlert = true;
 		  $scope.userAlertCode = "Success";
-		  $http.post("./deleteUser", userInformation.email)
+		  UserService.deleteUser(userInformation.email)
 		  	.success(function(data) {
 		  		 $scope.isUserSuccess = true;
 	        	  $scope.userAlertCode = "Success";
@@ -133,13 +158,14 @@ metice.controller('adminController', ['$scope','$http','$window','$timeout', fun
 		  });
 	  }
 	  
-	
+	/* Accept user request */
 	$scope.acceptUser = function(userDetail) {
 		$scope.isUserSuccess = true;
 		$scope.userAlert = true;
 		$scope.userAlertCode = "Success";
 		
-		$http.post("./updateUserByAdmin",userDetail).success(function(data) {
+		UserService.acceptUser(userDetail)
+		.success(function(data) {
         	  $scope.isUserSuccess = true;
         	  $scope.userAlertCode = "Success";
         	  $scope.userAlertMessage = "Your data has been successfully updated";
@@ -162,8 +188,9 @@ metice.controller('adminController', ['$scope','$http','$window','$timeout', fun
 			  }
 	  )};
 	  
+	  /* Logging out user */
 	  $scope.logout = function() {
-		  $http.get("./logout")
+		  UserService.logout()
 	          .success(function(data) {
 	        	  alert("Logout Successfully");
 	        	  $window.location.href = "./index.html";
@@ -174,8 +201,8 @@ metice.controller('adminController', ['$scope','$http','$window','$timeout', fun
 		  ) ;
 		};
 		
-	$scope.createRole = function() {
-		$http.post("./createRole",$scope.role)
+	$scope.createRole = function(role) {
+		RoleService.createRole(role)
 			.success( function() {
 				  $scope.roleAlert = true;
 	        	  $scope.isRoleSuccess = true;
@@ -197,7 +224,7 @@ metice.controller('adminController', ['$scope','$http','$window','$timeout', fun
 	}
 	
 	$scope.createNotice = function(notice) {
-		$http.post("./saveNotice", notice)
+		NoticeService.saveNotice(notice)
 			.success(function() {
 				$scope.postAlert = true;
 	        	  $scope.isPostSuccess = true;

@@ -128,10 +128,13 @@ public class UserServiceImpl implements UserService {
 					.parse(doa);
 			}
 			if(user.isAdmin()) {
-				if(jsonObj.getString("company") != null) {
-					int companyId = user.getCompany().getCompanyId();
-					Company company = companyService.getCompanyById(companyId);
-					company.setName(jsonObj.getString("company"));
+				String company = jsonObj.getString("company");
+				if(!jsonObj.getString("company").equals("null")) {
+				JSONObject companyJsonObj = new JSONObject(company);	
+				int companyId = companyJsonObj.getInt("companyId");
+				Company companyObject = companyService.getCompanyById(companyId);
+				companyObject.setName(companyJsonObj.getString("name"));
+				companyService.updateCompany(companyObject);
 				}
 			}
 			user.setDoa(dateOfAnniversary);

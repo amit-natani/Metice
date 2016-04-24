@@ -17,7 +17,6 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.metacube.metice.Entity.Company;
-import com.metacube.metice.Entity.Notice;
 import com.metacube.metice.Entity.User;
 import com.metacube.metice.dao.impl.CompanyDaoImpl;
 import com.metacube.metice.dao.impl.UserDaoImpl;
@@ -30,8 +29,8 @@ public class UserDaoImplTest {
 	private UserDaoImpl userDaoImpl;
 	@Autowired
 	private CompanyDaoImpl companyDaoImpl;
-	Notice notice =new Notice();
 	User user = new User();
+	User user1 = new User();
 	Company company = new Company();
 	
 	@Before
@@ -47,6 +46,7 @@ public class UserDaoImplTest {
 		}
 		
 		company.setName("Company-Name");
+		companyDaoImpl.createCompany(company);
 		user.setName("User Name");
 		user.setEmail("user.name@metacube.com");
 		user.setDob(dob);
@@ -54,7 +54,17 @@ public class UserDaoImplTest {
 		user.setPicture("https://lh4.googleusercontent.com/-N5NiXjGy98Q/AAAAAAAAAAI/AAAAAAAAAB4/GhIWSa3iyR4/photo.jpg");
 		user.setValid(true);
 		user.setAdmin(true);
-		user.setPermissions(0);
+		user.setPermissions(3);
+		user.setCompany(company);
+		user1.setName("Second User");
+		user1.setEmail("second.user@metacube.com");
+		user1.setDob(dob);
+		user1.setDoa(doa);
+		user1.setPicture("https://lh4.googleusercontent.com/-N5NiXjGy98Q/AAAAAAAAAAI/AAAAAAAAAB4/GhIWSa3iyR4/photo.jpg");
+		user1.setValid(true);
+		user1.setAdmin(true);
+		user1.setPermissions(3);
+		user1.setCompany(company);
 	}
 
 	@Test
@@ -100,9 +110,17 @@ public class UserDaoImplTest {
 		assertEquals(user, userDaoImpl.getUserByEmail("user.name@metacube.com"));
 	}
 	
+	@Test
+	@Rollback(true)
+	@Transactional
+	public void testGetAllAdminsByCompany() {
+		userDaoImpl.saveUser(user);
+		userDaoImpl.saveUser(user1);
+		assertEquals(2, userDaoImpl.getAllAdminsByCompany(company).size());
+	}
+	
 	@After
 	public void tearDown() {
-		notice = null;
 		user = null;
 		company = null;
 	}

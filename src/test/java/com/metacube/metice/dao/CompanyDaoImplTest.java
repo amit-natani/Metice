@@ -22,11 +22,14 @@ public class CompanyDaoImplTest {
 	@Autowired
 	private CompanyDaoImpl companyDaoImpl;
 	Company company = new Company();
+	Company company1 = new Company();
 	
 	
 	@Before
 	public void setUp() throws Exception {
 		company.setName("Company Name pvt. ltd.");
+		company1.setName("Software Company pvt. ltd.");
+		
 	}
 
 	
@@ -61,6 +64,15 @@ public class CompanyDaoImplTest {
 		companyDaoImpl.createCompany(company);
 		companyDaoImpl.deleteCompany(company);
 		assertEquals(null, companyDaoImpl.getCompanyByName("Company Name pvt. ltd."));
+	}
+	
+	@Test
+	@Rollback(true)
+	@Transactional
+	public void testGetAllCompanies() {
+		companyDaoImpl.createCompany(company);
+		companyDaoImpl.createCompany(company1);
+		assertEquals(2, companyDaoImpl.getAllCompanies().size());
 	}
 
 	@After

@@ -36,7 +36,7 @@ public class NoticeDaoImpl extends AbstractDao<Integer, Notice> implements
 	 *            : is the object of Notice which have to be save
 	 */
 	public void saveNotice(Notice notice) {
-		saveOrUpdate(notice);
+		save(notice);
 	}
 
 	/**
